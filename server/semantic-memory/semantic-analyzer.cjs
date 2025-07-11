@@ -1159,10 +1159,18 @@ function isAvailable() {
 }
 
 module.exports = {
-  analyzeSemantics: semanticAnalyzer.analyzeSemantics.bind(semanticAnalyzer),
-  generateSemanticSuggestions: semanticAnalyzer.generateSemanticSuggestions.bind(semanticAnalyzer),
-  analyzeProjectCompatibility: semanticAnalyzer.analyzeProjectCompatibility.bind(semanticAnalyzer),
-  analyzeSemanticMeaning: semanticAnalyzer.analyzeSemanticMeaning.bind(semanticAnalyzer),
+  analyzeSemantics: (query, context = {}) => {
+    return semanticAnalyzer.analyzeSemantics(query, context);
+  },
+  generateSemanticSuggestions: (query) => {
+    return semanticAnalyzer.generateSemanticSuggestions ? semanticAnalyzer.generateSemanticSuggestions(query) : [];
+  },
+  analyzeProjectCompatibility: (query, projectContext) => {
+    return semanticAnalyzer.analyzeProjectCompatibility ? semanticAnalyzer.analyzeProjectCompatibility(query, projectContext) : {};
+  },
+  analyzeSemanticMeaning: (query) => {
+    return semanticAnalyzer.analyzeSemanticMeaning ? semanticAnalyzer.analyzeSemanticMeaning(query) : {};
+  },
   isAvailable,
   
   // Экспортируем класс для расширения
