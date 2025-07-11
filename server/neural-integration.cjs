@@ -198,27 +198,9 @@ globalNeuralIntegration.initialize().catch(error => {
 
 module.exports = {
   NeuralIntegrationLayer,
-  generateHybridResponse: async (input, options = {}) => {
-    return await globalNeuralIntegration.generateHybridResponse(input, options);
-  },
-  analyzeSemanticDepth: async (input) => {
-    return await globalNeuralIntegration.analyzeSemanticDepth(input);
-  },
-  initializeNeuralIntegration: async () => {
-    return await globalNeuralIntegration.initialize();
-  }
+  initializeNeuralIntegration,
+  getGlobalNeuralIntegration: () => globalNeuralIntegration
 };
-
-    // Если есть только нейросетевой ответ
-    if (neuralResponse) {
-      console.log('🤖 Используем только нейросетевой ответ');
-      return neuralResponse;
-    }
-
-    // Если ничего нет
-    console.log('⚠️ Используем fallback ответ');
-    return this.generateFallbackResponse(input);
-  }
 
   /**
    * Проверяет, является ли ответ связным и осмысленным
